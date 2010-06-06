@@ -1,4 +1,4 @@
-Add http://github.com/naota/portage-overlay/raw/master/repository.xml into
+Add http://github.com/takeshik/portage-overlay/raw/master/repository.xml into
 "overlays" entry in layman.cfg, then layman -a takeshik.
 
 Any feedback is welcomed. Enjoy!
