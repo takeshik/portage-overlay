@@ -19,6 +19,7 @@ RDEPEND="${DEPEND}"
 src_compile() {
 	econf || die "econf failed"
 	epatch "${FILESDIR}/fix-libc-depend.patch"
+	epatch "${FILESDIR}/address-suffix-1.patch"
 	emake || die "emake failed"
 }
 
