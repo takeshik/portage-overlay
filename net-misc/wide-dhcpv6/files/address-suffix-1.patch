@@ -1,5 +1,5 @@
---- ../../wide-dhcpv6/prefixconf.c	2006-08-07 13:35:32.000000000 +0900
-+++ prefixconf.c	2006-11-05 00:15:21.000000000 +0900
+--- prefixconf.c
++++ prefixconf.c
 @@ -452,6 +452,7 @@
  #endif
  	ifpfx->paddr.sin6_addr = prefix->addr;

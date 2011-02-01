@@ -17,13 +17,31 @@ DEPEND=""
 RDEPEND="${DEPEND}"
 
 src_compile() {
-	econf || die "econf failed"
+	econf || die
 	epatch "${FILESDIR}/fix-libc-depend.patch"
 	epatch "${FILESDIR}/fix-dprintf-conflict.patch"
 	epatch "${FILESDIR}/address-suffix-1.patch"
-	emake || die "emake failed"
+	emake || die
+}
+
+mkd() {
+	local x=$1 X=$2 i=$3
+	sed \
+		-e "s:6x:6${x}:g" \
+		-e "s:6X:6${X}:g" \
+		"${FILESDIR}"/dhcp6x.${i}d.in > dhcp6${x}.${i}d
+	new${i}d dhcp6${x}.${i}d dhcp6${x}
 }
 
 src_install() {
-	emake install DESTDIR="${D}" || die "emake install failed"
+	einstall DESTDIR="${D}" || die
+	mkd c R init
+	mkd c R conf
+	mkd r R init
+	mkd r R conf
+	mkd s S init
+	mkd s S conf
+	insinto /etc/wide-dhcpv6
+	newins dhcp6c.conf.sample dhcp6c.conf
+	newins dhcp6s.conf.sample dhcp6s.conf
 }
